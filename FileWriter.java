@@ -3,14 +3,11 @@ package encryptdecrypt;
 import java.io.FileNotFoundException;
 import java.io.PrintWriter;
 
-public class FileWriter implements DataWriter {
+class FileWriter implements DataWriter {
     @Override
-    public void writeData(String[] args, String processedMessage) {
-        String filePath = "";
-        int filePathPosition = Main.arraySearch(args, "-out");
-
-        filePath = args[filePathPosition + 1];
-        try (PrintWriter pw = new PrintWriter(filePath)){
+    public void writeData(final String[] args, final String processedMessage) {
+        final int filePathPosition = Main.parsedArguments.getArgumentPosition("-out");
+        try (PrintWriter pw = new PrintWriter(args[filePathPosition + 1])) {
             pw.println(processedMessage);
         } catch (FileNotFoundException e) {
             e.printStackTrace();

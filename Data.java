@@ -1,19 +1,19 @@
 package encryptdecrypt;
 
-public class Data {
-    String message;
-    int key;
+class Data {
+    private final String message;
+    private final int key;
 
     public Data(String message, int key) {
         this.message = message;
         this.key = key;
     }
 
-    public String getMessage() {
+    final String getMessage() {
         return message;
     }
 
-    public int getKey() {
+    final int getKey() {
         return key;
     }
 }

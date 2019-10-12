@@ -1,28 +1,27 @@
 package encryptdecrypt;
 
-public class ShiftDecryptor implements CryptoMethod{
+class ShiftDecryptor implements CryptoMethod {
 
-    public String process(Data data) {
+    public String process(final Data data) {
         String message = data.getMessage();
-        int key = data.getKey();
-        String result = "";
-        int newCode = 0;
+        final int key = data.getKey();
+        final int alphabetLength = 26;
+        final String result;
+        int newCode;
         char[] chars = message.toCharArray();
 
         for (int i = 0; i < chars.length; i++) {
-            if (chars[i] >= 65 && chars[i] <= 90) {
+            if (chars[i] >= 'A' && chars[i] <= 'Z') {
                 newCode = chars[i] - key;
-                if (newCode < 65) {
-                    newCode = newCode + 26;
+                if (newCode < 'A') {
+                    newCode = newCode + alphabetLength;
                 }
-            }
-            else if (chars[i] >= 97 && chars[i] <= 122) {
+            } else if (chars[i] >= 'a' && chars[i] <= 'z') {
                 newCode = chars[i] - key;
-                if (newCode < 97) {
-                    newCode = newCode + 26;
+                if (newCode < 'a') {
+                    newCode = newCode + alphabetLength;
                 }
-            }
-            else {
+            } else {
                 newCode = chars[i];
             }
             chars[i] = (char) newCode;

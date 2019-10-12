@@ -1,33 +1,22 @@
 package encryptdecrypt;
 
-public class MainContext {
+class MainContext {
 
-    String[] args;
-    CryptoMethod cryptoMethod;
-    DataReader dataReader;
-    DataWriter dataWriter;
-    Data data;
-    String processedMessage;
+    private String[] args;
+    private CryptoMethod cryptoMethod;
+    private DataReader dataReader;
+    private DataWriter dataWriter;
 
-    public void setArgs(String args[]) {
+    MainContext(String[] args, CryptoMethod cryptoMethod, DataReader dataReader, DataWriter dataWriter) {
         this.args = args;
-    }
-
-    public void setCryptoMethod(CryptoMethod cryptoMethod) {
         this.cryptoMethod = cryptoMethod;
-    }
-
-    public void setDataReader(DataReader dataReader) {
         this.dataReader = dataReader;
-    }
-
-    public void setDataWriter(DataWriter dataWriter) {
         this.dataWriter = dataWriter;
     }
 
-    public void process () {
-        data = dataReader.readData(args);
-        processedMessage = cryptoMethod.process(data);
+    void process() {
+        Data data = dataReader.readData(args);
+        String processedMessage = cryptoMethod.process(data);
         dataWriter.writeData(args, processedMessage);
     }
 }

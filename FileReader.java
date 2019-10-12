@@ -4,24 +4,23 @@ import java.io.File;
 import java.io.IOException;
 import java.util.Scanner;
 
-public class FileReader implements DataReader {
+final class FileReader implements DataReader {
     @Override
-    public Data readData(String[] args) {
+    public Data readData(final String[] args) {
         String message = "";
-        int key = 0;
+        int key;
 
-        int inputFilePosition = Main.arraySearch(args, "-in");
-        String filePath = args[inputFilePosition+1];
-        File inputFile = new File(filePath);
+        final int inputFilePosition = Main.parsedArguments.getArgumentPosition("-in");
+        final String filePath = args[inputFilePosition + 1];
+        final File inputFile = new File(filePath);
 
-        try (Scanner sc = new Scanner(inputFile)) {
-            message = sc.nextLine();
-        }
-        catch (IOException e) {
+        try (Scanner scanner = new Scanner(inputFile)) {
+            message = scanner.nextLine();
+        } catch (IOException e) {
             System.out.println("File not found");
         }
 
-        int keyPosition = Main.arraySearch(args, "-key");
+        final int keyPosition = Main.parsedArguments.getArgumentPosition("-key");
         key = Integer.parseInt(args[keyPosition + 1]);
 
         return new Data(message, key);

@@ -1,13 +1,13 @@
 package encryptdecrypt;
 
-public class UnicodeEncryptor implements CryptoMethod {
+class UnicodeEncryptor implements CryptoMethod {
 
-    public String process(Data data) {
-        String result = "";
-        String message = data.getMessage();
-        int key = data.getKey();
+    public String process(final Data data) {
+        final String result;
+        final String message = data.getMessage();
+        final int key = data.getKey();
 
-        int newCode = 0;
+        int newCode;
         char[] chars = message.toCharArray();
 
         for (int i = 0; i < chars.length; i++) {
